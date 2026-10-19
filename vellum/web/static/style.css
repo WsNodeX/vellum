@@ -1,0 +1,20 @@
+:root { --bg:#0f1115; --card:#1a1d24; --fg:#e6e6e6; --muted:#9aa0aa; --accent:#6ea8fe; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: -apple-system, "Segoe UI", "PingFang SC", sans-serif; background:var(--bg); color:var(--fg); }
+header { padding:28px 20px 8px; text-align:center; }
+header h1 { margin:0; font-size:30px; letter-spacing:1px; }
+header p { color:var(--muted); margin:6px 0 0; }
+main { max-width:760px; margin:0 auto; padding:16px; }
+.card { background:var(--card); border:1px solid #262b33; border-radius:12px; padding:16px; margin-bottom:14px; }
+.card h2 { margin:0 0 10px; font-size:16px; color:var(--accent); }
+input, textarea { width:100%; background:#0c0e12; border:1px solid #2a2f38; color:var(--fg); border-radius:8px; padding:10px; margin-bottom:10px; font-size:14px; }
+textarea { min-height:90px; resize:vertical; }
+button { background:var(--accent); color:#0b1020; border:0; border-radius:8px; padding:10px 16px; font-weight:600; cursor:pointer; }
+button.ghost { background:transparent; color:var(--muted); border:1px solid #2a2f38; margin-left:8px; }
+.results { display:grid; gap:12px; }
+article { background:var(--card); border:1px solid #262b33; border-radius:12px; padding:14px; }
+article h3 { margin:0 0 6px; font-size:16px; display:flex; justify-content:space-between; gap:8px; }
+.score { color:var(--accent); font-size:13px; white-space:nowrap; }
+article p { margin:0 0 6px; color:#cfd3da; font-size:14px; line-height:1.5; }
+article small { color:var(--muted); }
+.empty { color:var(--muted); text-align:center; padding:20px; }

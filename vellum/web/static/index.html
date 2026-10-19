@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vellum · 本地知识库</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Vellum</h1>
+    <p>本地优先的 Markdown 知识库 &amp; BM25 全文检索</p>
+  </header>
+  <main>
+    <section class="card add">
+      <h2>添加笔记</h2>
+      <input id="title" placeholder="标题">
+      <textarea id="content" placeholder="内容（可写 Markdown）"></textarea>
+      <input id="tags" placeholder="标签，逗号分隔，如：ai,读书">
+      <button id="addBtn">添加</button>
+    </section>
+    <section class="card search">
+      <input id="q" placeholder="搜索关键词…">
+      <button id="searchBtn">搜索</button>
+      <button id="resetBtn" class="ghost">显示全部</button>
+    </section>
+    <section id="results" class="results"></section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
