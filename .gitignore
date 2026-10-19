@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.vellum/
+store.json
+*.db
+.DS_Store
+.venv/
+venv/
