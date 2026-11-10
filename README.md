@@ -4,10 +4,9 @@
 
 ### 本地优先的知识库与检索引擎 · 纯 Python · 零依赖 · 开箱即用
 
-[![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](#)
+[![Stars](https://img.shields.io/github/stars/WsNodeX/vellum?style=flat-square&color=111111&label=stars)](https://github.com/WsNodeX/vellum/stargazers)
+[![Release](https://img.shields.io/github/v/release/WsNodeX/vellum?style=flat-square&color=111111&label=release)](https://github.com/WsNodeX/vellum/releases)
+[![License](https://img.shields.io/badge/license-MIT-111111?style=flat-square)](LICENSE)
 
 **把散落各处的笔记、片段与灵感，沉淀成一个可检索、可浏览、可成长的本地知识库。**
 
@@ -72,26 +71,13 @@ $ vellum search "python"
 
 Vellum 分为四层，请求自上而下流动，存储与索引在最底层被复用：
 
-```
-┌─────────────────────────────────────────────────┐
-│              CLI  /  Web 控制台                  │
-│           (cli.py · server.py · web/)            │
-└───────────────┬───────────────────┬─────────────┘
-                │                   │
-         ┌──────▼──────┐     ┌──────▼──────┐
-         │  检索入口    │     │  笔记读写    │
-         │ (search.py) │     │ (models.py) │
-         └──────┬──────┘     └──────┬──────┘
-                │                   │
-         ┌──────▼───────────────────▼──────┐
-         │        BM25 索引 (index.py)       │
-         │   中文 bigram · 英文归一 · 标题加权  │
-         └──────────────┬──────────────────┘
-                        │
-         ┌──────────────▼──────────────────┐
-         │      JSON 持久化 (models.py)      │
-         │        ~/.vellum/store.json       │
-         └──────────────────────────────────┘
+```mermaid
+graph TD
+  UI["CLI / Web 控制台<br/>cli.py · server.py · web/"] --> S[检索入口 search.py]
+  UI --> M[笔记读写 models.py]
+  S --> IDX["BM25 索引 index.py<br/>中文 bigram · 英文归一 · 标题加权"]
+  M --> IDX
+  IDX --> ST["JSON 持久化<br/>~/.vellum/store.json"]
 ```
 
 - **存储层** — `Note` 以 dataclass 描述，序列化为 JSON 落盘；读写带原子保护，进程退出不丢数据。
