@@ -1,5 +1,16 @@
 const results = document.getElementById('results');
 
+// Element handles are resolved before any handler that closes over them is
+// installed. Declaring them at the bottom of the file read fine but broke the
+// page: the `qEl.addEventListener(...)` line above them ran while `qEl` was
+// still in its temporal dead zone, threw ReferenceError, and the whole script
+// stopped — so the `loadNotes()` call on the last line never executed and the
+// list stayed empty even though /api/notes returned every note.
+const titleEl = document.getElementById('title');
+const contentEl = document.getElementById('content');
+const tagsEl = document.getElementById('tags');
+const qEl = document.getElementById('q');
+
 function esc(s) {
   return (s || '').replace(/[&<>]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'}[c]));
 }
@@ -43,10 +54,5 @@ document.getElementById('addBtn').onclick = async () => {
 document.getElementById('searchBtn').onclick = () => search(qEl.value);
 document.getElementById('resetBtn').onclick = () => { qEl.value = ''; loadNotes(); };
 qEl.addEventListener('keydown', e => { if (e.key === 'Enter') search(qEl.value); });
-
-const titleEl = document.getElementById('title');
-const contentEl = document.getElementById('content');
-const tagsEl = document.getElementById('tags');
-const qEl = document.getElementById('q');
 
 loadNotes();
